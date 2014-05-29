@@ -1,5 +1,5 @@
 {
-    "name": "heystack/ecommerce-avaliability",
+    "name": "heystack/ecommerce-availability",
     "type": "silverstripe-module",
     "require": {
         "php": ">=5.4.0",
