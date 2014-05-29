@@ -1,3 +1,3 @@
 <?php
 
-define('ECOMMERCE_ZONING_BASE_PATH', __DIR__);
+define('ECOMMERCE_AVAILABILITY_BASE_PATH', __DIR__);

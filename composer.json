@@ -1,13 +1,13 @@
 {
-    "name": "heystack/ecommerce-zoning",
+    "name": "heystack/ecommerce-avaliability",
     "type": "silverstripe-module",
     "require": {
         "php": ">=5.4.0",
-        "composer/installers": "~1.0"
+        "composer/installers": "~1.0",
     },
     "autoload": {
         "psr-4": {
-            "Heystack\\Zoning\\": "src/"
+            "Heystack\\Avaliability\\": "src/"
         }
     },
     "extra": {
