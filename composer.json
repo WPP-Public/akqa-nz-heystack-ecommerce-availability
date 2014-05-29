@@ -3,7 +3,8 @@
     "type": "silverstripe-module",
     "require": {
         "php": ">=5.4.0",
-        "composer/installers": "~1.0"
+        "composer/installers": "~1.0",
+        "heystack/ecommerce-zoning": "dev-master"
     },
     "autoload": {
         "psr-4": {
