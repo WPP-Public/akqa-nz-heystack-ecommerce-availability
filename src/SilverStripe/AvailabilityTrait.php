@@ -4,15 +4,13 @@ namespace Heystack\Availability\SilverStripe;
 
 use Heystack\Core\Exception\ConfigurationException;
 use Heystack\Ecommerce\Locale\Interfaces\ZoneServiceInterface;
-use Heystack\Ecommerce\Zone\Traits\HasZoneServiceTrait;
+use Heystack\Ecommerce\Locale\Traits\HasZoneServiceTrait;
 
 /**
  * @package Heystack\Availability\SilverStripe
  */
 trait AvailabilityTrait
 {
-    use HasZoneServiceTrait;
-
     /**
      * @return bool
      * @throws \Heystack\Core\Exception\ConfigurationException
@@ -42,8 +40,13 @@ trait AvailabilityTrait
         }
 
         return array_key_exists(
-            $this->zoneService->getActiveZone()->getName(),
-            $this->getComponents('AvailabilityZones')->column('Name')
+            $this->getZoneService()->getActiveZone()->getName(),
+            $this->AvailabilityZones()->column('Name')
         );
     }
+
+    /**
+     * @return \Heystack\Ecommerce\Locale\Interfaces\ZoneServiceInterface
+     */
+    abstract function getZoneService();
 }

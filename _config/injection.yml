@@ -1,3 +1,4 @@
 Injector:
-  AvailabilityExtension:
-    ZoneService: %$heystack.locale_service
+  Heystack\Availability\SilverStripe\AvailabilityExtension:
+    properties:
+      ZoneService: %$heystack.zone_service

@@ -3,30 +3,35 @@
 namespace Heystack\Availability\SilverStripe;
 
 use Controller;
-use Heystack\Ecommerce\Zone\Traits\HasZoneServiceTrait;
+use Heystack\Ecommerce\Locale\Traits\HasZoneServiceTrait;
 use Versioned;
 use LeftAndMain;
+use DataExtension;
 
 /**
  * @package Heystack\Availability\SilverStripe
  */
-class AvailabilityExtension extends \DataExtension
+class AvailabilityExtension extends DataExtension
 {
     use HasZoneServiceTrait;
 
     /**
-     * @var array
+     * @param $class
+     * @param $extension
+     * @param $args
+     * @return array
      */
-    private static $db = array(
-        'NotAvailable' => 'Boolean'
-    );
-
-    /**
-     * @var array
-     */
-    private static $many_many = array(
-        'AvailabilityZones' => 'Heystack\Zoning\Zone'
-    );
+    public static function get_extra_config($class, $extension, $args)
+    {
+        return [
+            'db' => [
+                'NotAvailable' => 'Boolean'
+            ],
+            'many_many' => [
+                'AvailabilityZones' => 'Heystack\\Zoning\\Zone'
+            ]
+        ];
+    }
 
     /**
      * @param \FieldList $fields
@@ -57,12 +62,12 @@ class AvailabilityExtension extends \DataExtension
 
             // left join on ID and select on availability
             $query->addLeftJoin("{$productTable}_AvailabilityZones", "{$productTable}_AvailabilityZones.{$productTable}ID = $siteTreeTableMatch");
-            $query->addLeftJoin( "Zone", "{$productTable}_AvailabilityZones.ZoneID = Zone.ID");
+            $query->addLeftJoin( 'Heystack\Zoning\Zone', $productTable . '_AvailabilityZones.`Heystack\Zoning\ZoneID` = z.ID', 'z');
             $query->addWhere(sprintf(
-                "Zone.Name = '%s'",
+                "z.Name = '%s'",
                 \Convert::raw2sql($this->zoneService->getActiveZone()->getName())
             ));
             $query->addWhere("NotAvailable != 1");
         }
     }
-} 
+}
