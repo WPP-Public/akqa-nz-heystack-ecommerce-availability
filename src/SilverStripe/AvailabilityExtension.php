@@ -28,7 +28,7 @@ class AvailabilityExtension extends DataExtension
                 'NotAvailable' => 'Boolean'
             ],
             'many_many' => [
-                'AvailabilityZones' => 'Heystack\\Zoning\\Zone'
+                'AvailabilityZones' => 'Heystack\\DB\\Zone'
             ]
         ];
     }
@@ -62,7 +62,7 @@ class AvailabilityExtension extends DataExtension
 
             // left join on ID and select on availability
             $query->addLeftJoin("{$productTable}_AvailabilityZones", "{$productTable}_AvailabilityZones.{$productTable}ID = $siteTreeTableMatch");
-            $query->addLeftJoin( 'Heystack\Zoning\Zone', $productTable . '_AvailabilityZones.`Heystack\Zoning\ZoneID` = z.ID', 'z');
+            $query->addLeftJoin( 'Heystack\DB\Zone', $productTable . '_AvailabilityZones.`Heystack\DB\ZoneID` = z.ID', 'z');
             $query->addWhere(sprintf(
                 "z.Name = '%s'",
                 \Convert::raw2sql($this->zoneService->getActiveZone()->getName())

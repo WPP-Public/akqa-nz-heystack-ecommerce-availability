@@ -30,7 +30,9 @@ trait AvailabilityTrait
             return false;
         }
         
-        if (!$this->zoneService instanceof ZoneServiceInterface) {
+        $zoneService = $this->getZoneService();
+        
+        if (!$zoneService instanceof ZoneServiceInterface) {
             throw new ConfigurationException(
                 sprintf(
                     "%s::isAvailable expected to have a zone service but not was set on trait",
@@ -40,7 +42,7 @@ trait AvailabilityTrait
         }
 
         return array_key_exists(
-            $this->getZoneService()->getActiveZone()->getName(),
+            $zoneService->getActiveZone()->getName(),
             $this->AvailabilityZones()->column('Name')
         );
     }
