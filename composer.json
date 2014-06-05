@@ -9,7 +9,8 @@
     "autoload": {
         "psr-4": {
             "Heystack\\Availability\\": "src/"
-        }
+        },
+        "files": [ "src/functions.php" ]
     },
     "extra": {
         "branch-alias": {

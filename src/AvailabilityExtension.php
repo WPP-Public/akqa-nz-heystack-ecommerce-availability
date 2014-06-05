@@ -43,31 +43,4 @@ class AvailabilityExtension extends DataExtension
             new \CheckboxField('NotAvailable', 'Currently Unavailable')
         );
     }
-
-    /**
-     * Change the SQL to ensure that products that aren't available aren't selected
-     * @param \SQLQuery $query
-     */
-    public function augmentSQL(\SQLQuery &$query)
-    {
-        $controller = Controller::curr();
-
-        if ($controller && !$controller instanceof LeftAndMain) {
-
-            $productTable = get_class($this->owner);
-            $siteTreeTableMatch = sprintf(
-                'SiteTree%s.ID',
-                Versioned::current_stage() === 'Live' ? '_Live' : ''
-            );
-
-            // left join on ID and select on availability
-            $query->addLeftJoin("{$productTable}_AvailabilityZones", "{$productTable}_AvailabilityZones.{$productTable}ID = $siteTreeTableMatch");
-            $query->addLeftJoin( 'Heystack\DB\Zone', $productTable . '_AvailabilityZones.`Heystack\DB\ZoneID` = z.ID', 'z');
-            $query->addWhere(sprintf(
-                "z.Name = '%s'",
-                \Convert::raw2sql($this->zoneService->getActiveZone()->getName())
-            ));
-            $query->addWhere("NotAvailable != 1");
-        }
-    }
 }
