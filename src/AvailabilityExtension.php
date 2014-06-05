@@ -1,6 +1,6 @@
 <?php
 
-namespace Heystack\Availability\SilverStripe;
+namespace Heystack\Availability;
 
 use Controller;
 use Heystack\Ecommerce\Locale\Traits\HasZoneServiceTrait;
@@ -9,7 +9,7 @@ use LeftAndMain;
 use DataExtension;
 
 /**
- * @package Heystack\Availability\SilverStripe
+ * @package Heystack\Availability
  */
 class AvailabilityExtension extends DataExtension
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Heystack\Availability\SilverStripe;
+namespace Heystack\Availability;
 
 use Heystack\Core\Exception\ConfigurationException;
 use Heystack\Ecommerce\Locale\Interfaces\ZoneServiceInterface;
 use Heystack\Ecommerce\Locale\Traits\HasZoneServiceTrait;
 
 /**
- * @package Heystack\Availability\SilverStripe
+ * @package Heystack\Availability
  */
 trait AvailabilityTrait
 {
