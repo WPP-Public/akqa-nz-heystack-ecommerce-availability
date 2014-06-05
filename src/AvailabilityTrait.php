@@ -41,7 +41,7 @@ trait AvailabilityTrait
             );
         }
 
-        return array_key_exists(
+        return in_array(
             $zoneService->getActiveZone()->getName(),
             $this->AvailabilityZones()->column('Name')
         );
