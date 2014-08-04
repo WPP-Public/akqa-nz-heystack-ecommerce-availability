@@ -16,9 +16,9 @@ class AvailabilityExtension extends DataExtension
     use HasZoneServiceTrait;
 
     /**
-     * @param $class
-     * @param $extension
-     * @param $args
+     * @param string $class
+     * @param string $extension
+     * @param array $args
      * @return array
      */
     public static function get_extra_config($class, $extension, $args)
@@ -35,6 +35,7 @@ class AvailabilityExtension extends DataExtension
 
     /**
      * @param \FieldList $fields
+     * @return void
      */
     public function updateCMSFields(\FieldList $fields)
     {

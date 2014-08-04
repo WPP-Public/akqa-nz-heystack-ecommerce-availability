@@ -6,7 +6,7 @@ use DataList;
 
 /**
  * @param \DataList $list
- * @param $zoneName
+ * @param string $zoneName
  * @return \DataList
  */
 function filter_by_availability(DataList $list, $zoneName) {
